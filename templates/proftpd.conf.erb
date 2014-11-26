@@ -1,0 +1,1524 @@
+# Managed Puppet.
+#
+
+###################################################################
+# ProFTPD Core Module
+###################################################################
+
+<IfModule mod_auth.c>
+<% if defined? @AccessDenyMsg -%>
+	AccessDenyMsg <%= @AccessDenyMsg %>
+<% end -%>
+<% if defined? @AccessGrantMsg -%>
+	AccessGrantMsg <%= @AccessGrantMsg %>
+<% end -%>
+<% if defined? @AllowChrootSymlinks -%>
+	AllowChrootSymlinks <%= @AllowChrootSymlinks %>
+<% end -%>
+<% if defined? @AnonRequirePassword -%>
+	AnonRequirePassword <%= @AnonRequirePassword %>
+<% end -%>
+<% if defined? @AnonRejectPasswords -%>
+	AnonRejectPasswords <%= @AnonRejectPasswords %>
+<% end -%>
+<% if defined? @AuthAliasOnly -%>
+	AuthAliasOnly <%= @AuthAliasOnly %>
+<% end -%>
+<% if defined? @AuthUsingAlias -%>
+	AuthUsingAlias <%= @AuthUsingAlias %>
+<% end -%>
+<% if defined? @CreateHome -%>
+	CreateHome <%= @CreateHome %>
+<% end -%>
+<% if defined? @DefaultChdir -%>
+	DefaultChdir <%= @DefaultChdir %>
+<% end -%>
+<% if defined? @DefaultRoot -%>
+	DefaultRoot <%= @DefaultRoot %>
+<% end -%>
+<% if defined? @DisplayLogin -%>
+	DisplayLogin <%= @DisplayLogin %>
+<% end -%>
+<% if defined? @GroupPassword -%>
+	GroupPassword <%= @GroupPassword %>
+<% end -%>
+<% if defined? @LoginPasswordPrompt -%>
+	LoginPasswordPrompt <%= @LoginPasswordPrompt %>
+<% end -%>
+<% if defined? @MaxClients -%>
+	MaxClients <%= @MaxClients %>
+<% end -%>
+<% if defined? @MaxClientsPerClass -%>
+	MaxClientsPerClass <%= @MaxClientsPerClass %>
+<% end -%>
+<% if defined? @MaxClientsPerHost -%>
+	MaxClientsPerHost <%= @MaxClientsPerHost %>
+<% end -%>
+<% if defined? @MaxClientsPerUser -%>
+	MaxClientsPerUser <%= @MaxClientsPerUser %>
+<% end -%>
+<% if defined? @MaxConnectionsPerHost -%>
+	MaxConnectionsPerHost <%= @MaxConnectionsPerHost %>
+<% end -%>
+<% if defined? @MaxHostsPerUser -%>
+	MaxHostsPerUser <%= @MaxHostsPerUser %>
+<% end -%>
+<% if defined? @MaxLoginAttempts -%>
+	MaxLoginAttempts <%= @MaxLoginAttempts %>
+<% end -%>
+<% if defined? @RequireValidShell -%>
+	RequireValidShell <%= @RequireValidShell %>
+<% end -%>
+<% if defined? @RewriteHome -%>
+	RewriteHome <%= @RewriteHome %>
+<% end -%>
+<% if defined? @RootLogin -%>
+	RootLogin <%= @RootLogin %>
+<% end -%>
+<% if defined? @RootRevoke -%>
+	RootRevoke <%= @RootRevoke %>
+<% end -%>
+<% if defined? @TimeoutLogin -%>
+	TimeoutLogin <%= @TimeoutLogin %>
+<% end -%>
+<% if defined? @TimeoutSession -%>
+	TimeoutSession <%= @TimeoutSession %>
+<% end -%>
+<% if defined? @UseFtpUsers -%>
+	UseFtpUsers <%= @UseFtpUsers %>
+<% end -%>
+<% if defined? @UseLastlog -%>
+	UseLastlog <%= @UseLastlog %>
+<% end -%>
+<% if defined? @UserAlias -%>
+	UserAlias <%= @UserAlias %>
+<% end -%>
+<% if defined? @UserDirRoot -%>
+	UserDirRoot <%= @UserDirRoot %>
+<% end -%>
+<% if defined? @UserPassword -%>
+	UserPassword <%= @UserPassword %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_auth_file.c>
+<% if defined? @AuthGroupFile -%>
+	AuthGroupFile <%= @AuthGroupFile %>
+<% end -%>
+<% if defined? @AuthUserFile -%>
+	AuthUserFile <%= @AuthUserFile %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_auth_pam.c>
+<% if defined? @AuthPAM -%>
+	AuthPAM <%= @AuthPAM %>
+<% end -%>
+<% if defined? @AuthPAMConfig -%>
+	AuthPAMConfig <%= @AuthPAMConfig %>
+<% end -%>
+<% if defined? @AuthPAMOptions -%>
+	AuthPAMOptions <%= @AuthPAMOptions %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_auth_unix.c>
+<% if defined? @AuthUnixOptions -%>
+	AuthUnixOptions <%= @AuthUnixOptions %>
+<% end -%>
+<% if defined? @PersistentPasswd -%>
+	PersistentPasswd <%= @PersistentPasswd %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_cap.c>
+<% if defined? @CapabilitiesEngine -%>
+	CapabilitiesEngine <%= @CapabilitiesEngine %>
+<% end -%>
+<% if defined? @CapabilitiesRootRevoke -%>
+	CapabilitiesRootRevoke <%= @CapabilitiesRootRevoke %>
+<% end -%>
+<% if defined? @CapabilitiesSet -%>
+	CapabilitiesSet <%= @CapabilitiesSet %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_core.c>
+<% if defined? @Anonymous -%>
+<%   @Anonymous.each do |name, values| -%>
+	<Anonymous <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</Anonymous>
+<%   end -%>
+<% end -%>
+<% if defined? @Class -%>
+<%   @Class.each do |name, values| -%>
+	<Class <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</Class>
+<%   end -%>
+<% end -%>
+<% if defined? @Directory -%>
+<%   @Directory.each do |name, values| -%>
+	<Directory <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</Directory>
+<%   end -%>
+<% end -%>
+<% if defined? @Global -%>
+<%   @Global.each do |name, values| -%>
+	<Global <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</Global>
+<%   end -%>
+<% end -%>
+<% if defined? @IfDefine -%>
+<%   @IfDefine.each do |name, values| -%>
+	<IfDefine <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfDefine>
+<%   end -%>
+<% end -%>
+<% if defined? @IfModule -%>
+<%   @IfModule.each do |name, values| -%>
+	<IfModule <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfModule>
+<%   end -%>
+<% end -%>
+<% if defined? @Limit -%>
+<%   @Limit.each do |name, values| -%>
+	<Limit <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</Limit>
+<%   end -%>
+<% end -%>
+<% if defined? @VirtualHost -%>
+<%   @VirtualHost.each do |name, values| -%>
+	<VirtualHost <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</VirtualHost>
+<%   end -%>
+<% end -%>
+<% if defined? @Allow -%>
+	Allow <%= @Allow %>
+<% end -%>
+<% if defined? @AllowAll -%>
+	AllowAll <%= @AllowAll %>
+<% end -%>
+<% if defined? @AllowClass -%>
+	AllowClass <%= @AllowClass %>
+<% end -%>
+<% if defined? @AllowFilter -%>
+	AllowFilter <%= @AllowFilter %>
+<% end -%>
+<% if defined? @AllowForeignAddress -%>
+	AllowForeignAddress <%= @AllowForeignAddress %>
+<% end -%>
+<% if defined? @AllowGroup -%>
+	AllowGroup <%= @AllowGroup %>
+<% end -%>
+<% if defined? @AllowOverride -%>
+	AllowOverride <%= @AllowOverride %>
+<% end -%>
+<% if defined? @AllowUser -%>
+	AllowUser <%= @AllowUser %>
+<% end -%>
+<% if defined? @AuthOrder -%>
+	AuthOrder <%= @AuthOrder %>
+<% end -%>
+<% if defined? @CDPath -%>
+	CDPath <%= @CDPath %>
+<% end -%>
+<% if defined? @CommandBufferSize -%>
+	CommandBufferSize <%= @CommandBufferSize %>
+<% end -%>
+<% if defined? @DebugLevel -%>
+	DebugLevel <%= @DebugLevel %>
+<% end -%>
+<% if defined? @DefaultAddress -%>
+	DefaultAddress <%= @DefaultAddress %>
+<% end -%>
+<% if defined? @DefaultServer -%>
+	DefaultServer <%= @DefaultServer %>
+<% end -%>
+<% if defined? @DefaultTransferMode -%>
+	DefaultTransferMode <%= @DefaultTransferMode %>
+<% end -%>
+<% if defined? @DeferWelcome -%>
+	DeferWelcome <%= @DeferWelcome %>
+<% end -%>
+<% if defined? @Define -%>
+	Define <%= @Define %>
+<% end -%>
+<% if defined? @Deny -%>
+	Deny <%= @Deny %>
+<% end -%>
+<% if defined? @DenyAll -%>
+	DenyAll <%= @DenyAll %>
+<% end -%>
+<% if defined? @DenyClass -%>
+	DenyClass <%= @DenyClass %>
+<% end -%>
+<% if defined? @DenyFilter -%>
+	DenyFilter <%= @DenyFilter %>
+<% end -%>
+<% if defined? @DenyGroup -%>
+	DenyGroup <%= @DenyGroup %>
+<% end -%>
+<% if defined? @DenyUser -%>
+	DenyUser <%= @DenyUser %>
+<% end -%>
+<% if defined? @DisplayChdir -%>
+	DisplayChdir <%= @DisplayChdir %>
+<% end -%>
+<% if defined? @DisplayConnect -%>
+	DisplayConnect <%= @DisplayConnect %>
+<% end -%>
+<% if defined? @DisplayQuit -%>
+	DisplayQuit <%= @DisplayQuit %>
+<% end -%>
+<% if defined? @From -%>
+	From <%= @From %>
+<% end -%>
+<% if defined? @Group -%>
+	Group <%= @Group %>
+<% end -%>
+<% if defined? @GroupOwner -%>
+	GroupOwner <%= @GroupOwner %>
+<% end -%>
+<% if defined? @HideFiles -%>
+	HideFiles <%= @HideFiles %>
+<% end -%>
+<% if defined? @HideGroup -%>
+	HideGroup <%= @HideGroup %>
+<% end -%>
+<% if defined? @HideNoAccess -%>
+	HideNoAccess <%= @HideNoAccess %>
+<% end -%>
+<% if defined? @HideUser -%>
+	HideUser <%= @HideUser %>
+<% end -%>
+<% if defined? @IgnoreHidden -%>
+	IgnoreHidden <%= @IgnoreHidden %>
+<% end -%>
+<% if defined? @Include -%>
+	Include <%= @Include %>
+<% end -%>
+<% if defined? @MasqueradeAddress -%>
+	MasqueradeAddress <%= @MasqueradeAddress %>
+<% end -%>
+<% if defined? @MaxCommandRate -%>
+	MaxCommandRate <%= @MaxCommandRate %>
+<% end -%>
+<% if defined? @MaxConnectionRate -%>
+	MaxConnectionRate <%= @MaxConnectionRate %>
+<% end -%>
+<% if defined? @MaxInstances -%>
+	MaxInstances <%= @MaxInstances %>
+<% end -%>
+<% if defined? @MultilineRFC2228 -%>
+	MultilineRFC2228 <%= @MultilineRFC2228 %>
+<% end -%>
+<% if defined? @Order -%>
+	Order <%= @Order %>
+<% end -%>
+<% if defined? @PassivePorts -%>
+	PassivePorts <%= @PassivePorts %>
+<% end -%>
+<% if defined? @PathAllowFilter -%>
+	PathAllowFilter <%= @PathAllowFilter %>
+<% end -%>
+<% if defined? @PathDenyFilter -%>
+	PathDenyFilter <%= @PathDenyFilter %>
+<% end -%>
+<% if defined? @PidFile -%>
+	PidFile <%= @PidFile %>
+<% end -%>
+<% if defined? @Port -%>
+	Port <%= @Port %>
+<% end -%>
+<% if defined? @ProcessTitles -%>
+	ProcessTitles <%= @ProcessTitles %>
+<% end -%>
+<% if defined? @Protocols -%>
+	Protocols <%= @Protocols %>
+<% end -%>
+<% if defined? @RegexOptions -%>
+	RegexOptions <%= @RegexOptions %>
+<% end -%>
+<% if defined? @Satisfy -%>
+	Satisfy <%= @Satisfy %>
+<% end -%>
+<% if defined? @ScoreboardFile -%>
+	ScoreboardFile <%= @ScoreboardFile %>
+<% end -%>
+<% if defined? @ScoreboardMutex -%>
+	ScoreboardMutex <%= @ScoreboardMutex %>
+<% end -%>
+<% if defined? @ScoreboardScrub -%>
+	ScoreboardScrub <%= @ScoreboardScrub %>
+<% end -%>
+<% if defined? @ServerAdmin -%>
+	ServerAdmin <%= @ServerAdmin %>
+<% end -%>
+<% if defined? @ServerAlias -%>
+	ServerAlias <%= @ServerAlias %>
+<% end -%>
+<% if defined? @ServerIdent -%>
+	ServerIdent <%= @ServerIdent %>
+<% end -%>
+<% if defined? @ServerName -%>
+	ServerName <%= @ServerName %>
+<% end -%>
+<% if defined? @ServerType -%>
+	ServerType <%= @ServerType %>
+<% end -%>
+<% if defined? @SetEnv -%>
+	SetEnv <%= @SetEnv %>
+<% end -%>
+<% if defined? @SocketBindTight -%>
+	SocketBindTight <%= @SocketBindTight %>
+<% end -%>
+<% if defined? @SocketOptions -%>
+	SocketOptions <%= @SocketOptions %>
+<% end -%>
+<% if defined? @SyslogFacility -%>
+	SyslogFacility <%= @SyslogFacility %>
+<% end -%>
+<% if defined? @SyslogLevel -%>
+	SyslogLevel <%= @SyslogLevel %>
+<% end -%>
+<% if defined? @TimeoutIdle -%>
+	TimeoutIdle <%= @TimeoutIdle %>
+<% end -%>
+<% if defined? @TimeoutLinger -%>
+	TimeoutLinger <%= @TimeoutLinger %>
+<% end -%>
+<% if defined? @TimesGMT -%>
+	TimesGMT <%= @TimesGMT %>
+<% end -%>
+<% if defined? @Trace -%>
+	Trace <%= @Trace %>
+<% end -%>
+<% if defined? @TraceLog -%>
+	TraceLog <%= @TraceLog %>
+<% end -%>
+<% if defined? @TraceOptions -%>
+	TraceOptions <%= @TraceOptions %>
+<% end -%>
+<% if defined? @TransferLog -%>
+	TransferLog <%= @TransferLog %>
+<% end -%>
+<% if defined? @Umask -%>
+	Umask <%= @Umask %>
+<% end -%>
+<% if defined? @UnsetEnv -%>
+	UnsetEnv <%= @UnsetEnv %>
+<% end -%>
+<% if defined? @UseIPv6 -%>
+	UseIPv6 <%= @UseIPv6 %>
+<% end -%>
+<% if defined? @UseReverseDNS -%>
+	UseReverseDNS <%= @UseReverseDNS %>
+<% end -%>
+<% if defined? @User -%>
+	User <%= @User %>
+<% end -%>
+<% if defined? @UserOwner -%>
+	UserOwner <%= @UserOwner %>
+<% end -%>
+<% if defined? @WtmpLog -%>
+	WtmpLog <%= @WtmpLog %>
+<% end -%>
+<% if defined? @tcpBackLog -%>
+	tcpBackLog <%= @tcpBackLog %>
+<% end -%>
+<% if defined? @tcpNoDelay -%>
+	tcpNoDelay <%= @tcpNoDelay %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ctrls.c>
+<% if defined? @ControlsACLs -%>
+	ControlsACLs <%= @ControlsACLs %>
+<% end -%>
+<% if defined? @ControlsAuthFreshness -%>
+	ControlsAuthFreshness <%= @ControlsAuthFreshness %>
+<% end -%>
+<% if defined? @ControlsEngine -%>
+	ControlsEngine <%= @ControlsEngine %>
+<% end -%>
+<% if defined? @ControlsInterval -%>
+	ControlsInterval <%= @ControlsInterval %>
+<% end -%>
+<% if defined? @ControlsLog -%>
+	ControlsLog <%= @ControlsLog %>
+<% end -%>
+<% if defined? @ControlsMaxClients -%>
+	ControlsMaxClients <%= @ControlsMaxClients %>
+<% end -%>
+<% if defined? @ControlsSocket -%>
+	ControlsSocket <%= @ControlsSocket %>
+<% end -%>
+<% if defined? @ControlsSocketACL -%>
+	ControlsSocketACL <%= @ControlsSocketACL %>
+<% end -%>
+<% if defined? @ControlsSocketOwner -%>
+	ControlsSocketOwner <%= @ControlsSocketOwner %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_delay.c>
+<% if defined? @DelayControlsACLs -%>
+	DelayControlsACLs <%= @DelayControlsACLs %>
+<% end -%>
+<% if defined? @DelayEngine -%>
+	DelayEngine <%= @DelayEngine %>
+<% end -%>
+<% if defined? @DelayOnEvent -%>
+	DelayOnEvent <%= @DelayOnEvent %>
+<% end -%>
+<% if defined? @DelayTable -%>
+	DelayTable <%= @DelayTable %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_dso.c>
+<% if defined? @LoadFile -%>
+	LoadFile <%= @LoadFile %>
+<% end -%>
+<% if defined? @LoadModule -%>
+	LoadModule <%= @LoadModule.join(' ') %>
+<% end -%>
+<% if defined? @ModuleControlsACLs -%>
+	ModuleControlsACLs <%= @ModuleControlsACLs %>
+<% end -%>
+<% if defined? @ModuleOrder -%>
+	ModuleOrder <%= @ModuleOrder %>
+<% end -%>
+<% if defined? @ModulePath -%>
+	ModulePath <%= @ModulePath %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_facl.c>
+<% if defined? @FACLEngine -%>
+	FACLEngine <%= @FACLEngine %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_facts.c>
+<% if defined? @FactsAdvertise -%>
+	FactsAdvertise <%= @FactsAdvertise %>
+<% end -%>
+<% if defined? @FactsOptions -%>
+	FactsOptions <%= @FactsOptions %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ident.c>
+<% if defined? @IdentLookups -%>
+	IdentLookups <%= @IdentLookups %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_lang.c>
+<% if defined? @LangDefault -%>
+	LangDefault <%= @LangDefault %>
+<% end -%>
+<% if defined? @LangEngine -%>
+	LangEngine <%= @LangEngine %>
+<% end -%>
+<% if defined? @LangPath -%>
+	LangPath <%= @LangPath %>
+<% end -%>
+<% if defined? @UseEncoding -%>
+	UseEncoding <%= @UseEncoding %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_log.c>
+<% if defined? @AllowLogSymlinks -%>
+	AllowLogSymlinks <%= @AllowLogSymlinks %>
+<% end -%>
+<% if defined? @ExtendedLog -%>
+<% @ExtendedLog.each do |name, values| -%>
+<% values.each do |value| -%>
+	ExtendedLog <%= name %> <%= value %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% if defined? @LogFormat -%>
+<% @LogFormat.each do |key, value| -%>
+	LogFormat <%= key %> <%= value %>
+<% end -%>
+<% end -%>
+<% if defined? @ServerLog -%>
+	ServerLog <%= @ServerLog %>
+<% end -%>
+<% if defined? @SystemLog -%>
+	SystemLog <%= @SystemLog %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ls.c>
+<% if defined? @DirFakeUser -%>
+	DirFakeUser <%= @DirFakeUser %>
+<% end -%>
+<% if defined? @DirFakeGroup -%>
+	DirFakeGroup <%= @DirFakeGroup %>
+<% end -%>
+<% if defined? @DirFakeMode -%>
+	DirFakeMode <%= @DirFakeMode %>
+<% end -%>
+<% if defined? @ListOptions -%>
+	ListOptions <%= @ListOptions %>
+<% end -%>
+<% if defined? @ShowSymlinks -%>
+	ShowSymlinks <%= @ShowSymlinks %>
+<% end -%>
+<% if defined? @UseGlobbing -%>
+	UseGlobbing <%= @UseGlobbing %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_memcache.c>
+<% if defined? @MemcacheConnectFailures -%>
+	MemcacheConnectFailures <%= @MemcacheConnectFailures %>
+<% end -%>
+<% if defined? @MemcacheEngine -%>
+	MemcacheEngine <%= @MemcacheEngine %>
+<% end -%>
+<% if defined? @MemcacheLog -%>
+	MemcacheLog <%= @MemcacheLog %>
+<% end -%>
+<% if defined? @MemcacheOptions -%>
+	MemcacheOptions <%= @MemcacheOptions %>
+<% end -%>
+<% if defined? @MemcacheReplicas -%>
+	MemcacheReplicas <%= @MemcacheReplicas %>
+<% end -%>
+<% if defined? @MemcacheServers -%>
+	MemcacheServers <%= @MemcacheServers %>
+<% end -%>
+<% if defined? @MemcacheTimeouts -%>
+	MemcacheTimeouts <%= @MemcacheTimeouts %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_rlimit.c>
+<% if defined? @RLimitChroot -%>
+	RLimitChroot <%= @RLimitChroot %>
+<% end -%>
+<% if defined? @RLimitCPU -%>
+	RLimitCPU <%= @RLimitCPU %>
+<% end -%>
+<% if defined? @RLimitMemory -%>
+	RLimitMemory <%= @RLimitMemory %>
+<% end -%>
+<% if defined? @RLimitOpenFiles -%>
+	RLimitOpenFiles <%= @RLimitOpenFiles %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_xfer.c>
+<% if defined? @AllowOverwrite -%>
+	AllowOverwrite <%= @AllowOverwrite %>
+<% end -%>
+<% if defined? @AllowRetrieveRestart -%>
+	AllowRetrieveRestart <%= @AllowRetrieveRestart %>
+<% end -%>
+<% if defined? @AllowStoreRestart -%>
+	AllowStoreRestart <%= @AllowStoreRestart %>
+<% end -%>
+<% if defined? @DeleteAbortedStores -%>
+	DeleteAbortedStores <%= @DeleteAbortedStores %>
+<% end -%>
+<% if defined? @DisplayFileTransfer -%>
+	DisplayFileTransfer <%= @DisplayFileTransfer %>
+<% end -%>
+<% if defined? @HiddenStores -%>
+	HiddenStores <%= @HiddenStores %>
+<% end -%>
+<% if defined? @MaxRetrieveFileSize -%>
+	MaxRetrieveFileSize <%= @MaxRetrieveFileSize %>
+<% end -%>
+<% if defined? @MaxStoreFileSize -%>
+	MaxStoreFileSize <%= @MaxStoreFileSize %>
+<% end -%>
+<% if defined? @MaxTransfersPerHost -%>
+	MaxTransfersPerHost <%= @MaxTransfersPerHost %>
+<% end -%>
+<% if defined? @MaxTransfersPerUser -%>
+	MaxTransfersPerUser <%= @MaxTransfersPerUser %>
+<% end -%>
+<% if defined? @StoreUniquePrefix -%>
+	StoreUniquePrefix <%= @StoreUniquePrefix %>
+<% end -%>
+<% if defined? @TimeoutNoTransfer -%>
+	TimeoutNoTransfer <%= @TimeoutNoTransfer %>
+<% end -%>
+<% if defined? @TimeoutStalled -%>
+	TimeoutStalled <%= @TimeoutStalled %>
+<% end -%>
+<% if defined? @TransferPriority -%>
+	TransferPriority <%= @TransferPriority %>
+<% end -%>
+<% if defined? @TransferRate -%>
+	TransferRate <%= @TransferRate %>
+<% end -%>
+<% if defined? @UseSendfile -%>
+	UseSendfile <%= @UseSendfile %>
+<% end -%>
+</IfModule>
+
+###################################################################
+# ProFTPD Contrib Module
+###################################################################
+
+<IfModule mod_ban.c>
+<% if defined? @BanCache -%>
+	BanCache <%= @BanCache %>
+<% end -%>
+<% if defined? @BanCacheOptions -%>
+	BanCacheOptions <%= @BanCacheOptions %>
+<% end -%>
+<% if defined? @BanControlsACLs -%>
+	BanControlsACLs <%= @BanControlsACLs %>
+<% end -%>
+<% if defined? @BanEngine -%>
+	BanEngine <%= @BanEngine %>
+<% end -%>
+<% if defined? @BanLog -%>
+	BanLog <%= @BanLog %>
+<% end -%>
+<% if defined? @BanMessage -%>
+	BanMessage <%= @BanMessage %>
+<% end -%>
+<% if defined? @BanOnEvent -%>
+	BanOnEvent <%= @BanOnEvent %>
+<% end -%>
+<% if defined? @BanTable -%>
+	BanTable <%= @BanTable %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ctrls_admin.c>
+<% if defined? @AdminControlsACLs -%>
+	AdminControlsACLs <%= @AdminControlsACLs %>
+<% end -%>
+<% if defined? @AdminControlsEngine -%>
+	AdminControlsEngine <%= @AdminControlsEngine %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_deflate.c>
+<% if defined? @DeflateEngine -%>
+	DeflateEngine <%= @DeflateEngine %>
+<% end -%>
+<% if defined? @DeflateLog -%>
+	DeflateLog <%= @DeflateLog %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_dnsbl.c>
+<% if defined? @DNSBLDomain -%>
+	DNSBLDomain <%= @DNSBLDomain %>
+<% end -%>
+<% if defined? @DNSBLEngine -%>
+	DNSBLEngine <%= @DNSBLEngine %>
+<% end -%>
+<% if defined? @DNSBLLog -%>
+	DNSBLLog <%= @DNSBLLog %>
+<% end -%>
+<% if defined? @DNSBLPolicy -%>
+	DNSBLPolicy <%= @DNSBLPolicy %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_dynmasq.c>
+<% if defined? @DynMasqControlsACLs -%>
+	DynMasqControlsACLs <%= @DynMasqControlsACLs %>
+<% end -%>
+<% if defined? @DynMasqRefresh -%>
+	DynMasqRefresh <%= @DynMasqRefresh %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_exec.c>
+<% if defined? @ExecBeforeCommand -%>
+	ExecBeforeCommand <%= @ExecBeforeCommand %>
+<% end -%>
+<% if defined? @ExecEnable -%>
+	ExecEnable <%= @ExecEnable %>
+<% end -%>
+<% if defined? @ExecEngine -%>
+	ExecEngine <%= @ExecEngine %>
+<% end -%>
+<% if defined? @ExecEnviron -%>
+	ExecEnviron <%= @ExecEnviron %>
+<% end -%>
+<% if defined? @ExecLog -%>
+	ExecLog <%= @ExecLog %>
+<% end -%>
+<% if defined? @ExecOnCommand -%>
+	ExecOnCommand <%= @ExecOnCommand %>
+<% end -%>
+<% if defined? @ExecOnConnect -%>
+	ExecOnConnect <%= @ExecOnConnect %>
+<% end -%>
+<% if defined? @ExecOnError -%>
+	ExecOnError <%= @ExecOnError %>
+<% end -%>
+<% if defined? @ExecOnEvent -%>
+	ExecOnEvent <%= @ExecOnEvent %>
+<% end -%>
+<% if defined? @ExecOnExit -%>
+	ExecOnExit <%= @ExecOnExit %>
+<% end -%>
+<% if defined? @ExecOnRestart -%>
+	ExecOnRestart <%= @ExecOnRestart %>
+<% end -%>
+<% if defined? @ExecOptions -%>
+	ExecOptions <%= @ExecOptions %>
+<% end -%>
+<% if defined? @ExecTimeout -%>
+	ExecTimeout <%= @ExecTimeout %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_geoip.c>
+<% if defined? @GeoIPAllowFilter -%>
+	GeoIPAllowFilter <%= @GeoIPAllowFilter %>
+<% end -%>
+<% if defined? @GeoIPDenyFilter -%>
+	GeoIPDenyFilter <%= @GeoIPDenyFilter %>
+<% end -%>
+<% if defined? @GeoIPEngine -%>
+	GeoIPEngine <%= @GeoIPEngine %>
+<% end -%>
+<% if defined? @GeoIPLog -%>
+	GeoIPLog <%= @GeoIPLog %>
+<% end -%>
+<% if defined? @GeoIPPolicy -%>
+	GeoIPPolicy <%= @GeoIPPolicy %>
+<% end -%>
+<% if defined? @GeoIPTable -%>
+	GeoIPTable <%= @GeoIPTable %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ifsession.c>
+<% if defined? @IfAuthenticated -%>
+<%   @IfAuthenticated.each do |name, values| -%>
+	<IfAuthenticated <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfAuthenticated>
+<%   end -%>
+<% end -%>
+<% if defined? @IfClass -%>
+<%   @IfClass.each do |name, values| -%>
+	<IfClass <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfClass>
+<%   end -%>
+<% end -%>
+<% if defined? @IfGroup -%>
+<%   @IfGroup.each do |name, values| -%>
+	<IfGroup <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfGroup>
+<%   end -%>
+<% end -%>
+<% if defined? @IfUser -%>
+<%   @IfUser.each do |name, values| -%>
+	<IfUser <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfUser>
+<%   end -%>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ifversion.c>
+<% if defined? @IfVersion -%>
+<%   @IfVersion.each do |name, values| -%>
+	<IfVersion <%= name %>>
+<%     values.each do |key, value| -%>
+		<%= key %> <%= value %>
+<%     end -%>
+	</IfVersion>
+<%   end -%>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ldap.c>
+<% if defined? @LDAPAliasDereference -%>
+	LDAPAliasDereference <%= @LDAPAliasDereference %>
+<% end -%>
+<% if defined? @LDAPAttr -%>
+	LDAPAttr <%= @LDAPAttr %>
+<% end -%>
+<% if defined? @LDAPAuthBinds -%>
+	LDAPAuthBinds <%= @LDAPAuthBinds %>
+<% end -%>
+<% if defined? @LDAPBindDN -%>
+	LDAPBindDN <%= @LDAPBindDN %>
+<% end -%>
+<% if defined? @LDAPDefaultAuthScheme -%>
+	LDAPDefaultAuthScheme <%= @LDAPDefaultAuthScheme %>
+<% end -%>
+<% if defined? @LDAPDefaultGID -%>
+	LDAPDefaultGID <%= @LDAPDefaultGID %>
+<% end -%>
+<% if defined? @LDAPDefaultQuota -%>
+	LDAPDefaultQuota <%= @LDAPDefaultQuota %>
+<% end -%>
+<% if defined? @LDAPDefaultUID -%>
+	LDAPDefaultUID <%= @LDAPDefaultUID %>
+<% end -%>
+<% if defined? @LDAPForceDefaultGID -%>
+	LDAPForceDefaultGID <%= @LDAPForceDefaultGID %>
+<% end -%>
+<% if defined? @LDAPForceDefaultUID -%>
+	LDAPForceDefaultUID <%= @LDAPForceDefaultUID %>
+<% end -%>
+<% if defined? @LDAPForceGeneratedHomedir -%>
+	LDAPForceGeneratedHomedir <%= @LDAPForceGeneratedHomedir %>
+<% end -%>
+<% if defined? @LDAPGenerateHomedir -%>
+	LDAPGenerateHomedir <%= @LDAPGenerateHomedir %>
+<% end -%>
+<% if defined? @LDAPGenerateHomedirPrefix -%>
+	LDAPGenerateHomedirPrefix <%= @LDAPGenerateHomedirPrefix %>
+<% end -%>
+<% if defined? @LDAPGenerateHomedirPrefixNoUsername -%>
+	LDAPGenerateHomedirPrefixNoUsername <%= @LDAPGenerateHomedirPrefixNoUsername %>
+<% end -%>
+<% if defined? @LDAPGroups -%>
+	LDAPGroups <%= @LDAPGroups %>
+<% end -%>
+<% if defined? @LDAPLog -%>
+	LDAPLog <%= @LDAPLog %>
+<% end -%>
+<% if defined? @LDAPProtocolVersion -%>
+	LDAPProtocolVersion <%= @LDAPProtocolVersion %>
+<% end -%>
+<% if defined? @LDAPQueryTimeout -%>
+	LDAPQueryTimeout <%= @LDAPQueryTimeout %>
+<% end -%>
+<% if defined? @LDAPSearchScope -%>
+	LDAPSearchScope <%= @LDAPSearchScope %>
+<% end -%>
+<% if defined? @LDAPServer -%>
+	LDAPServer <%= @LDAPServer %>
+<% end -%>
+<% if defined? @LDAPUsers -%>
+	LDAPUsers <%= @LDAPUsers %>
+<% end -%>
+<% if defined? @LDAPUseTLS -%>
+	LDAPUseTLS <%= @LDAPUseTLS %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_load.c>
+<% if defined? @MaxLoad -%>
+	MaxLoad <%= @MaxLoad %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_log_forensic.c>
+<% if defined? @ForensicLogBufferSize -%>
+	ForensicLogBufferSize <%= @ForensicLogBufferSize %>
+<% end -%>
+<% if defined? @ForensicLogCapture -%>
+	ForensicLogCapture <%= @ForensicLogCapture %>
+<% end -%>
+<% if defined? @ForensicLogCriteria -%>
+	ForensicLogCriteria <%= @ForensicLogCriteria %>
+<% end -%>
+<% if defined? @ForensicLogEngine -%>
+	ForensicLogEngine <%= @ForensicLogEngine %>
+<% end -%>
+<% if defined? @ForensicLogFile -%>
+	ForensicLogFile <%= @ForensicLogFile %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_qos.c>
+<% if defined? @QoSOptions -%>
+	QoSOptions <%= @QoSOptions %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_quotatab.c>
+<% if defined? @QuotaDefault -%>
+	QuotaDefault <%= @QuotaDefault %>
+<% end -%>
+<% if defined? @QuotaDirectoryTally -%>
+	QuotaDirectoryTally <%= @QuotaDirectoryTally %>
+<% end -%>
+<% if defined? @QuotaDisplayUnits -%>
+	QuotaDisplayUnits <%= @QuotaDisplayUnits %>
+<% end -%>
+<% if defined? @QuotaEngine -%>
+	QuotaEngine <%= @QuotaEngine %>
+<% end -%>
+<% if defined? @QuotaExcludeFilter -%>
+	QuotaExcludeFilter <%= @QuotaExcludeFilter %>
+<% end -%>
+<% if defined? @QuotaLimitTable -%>
+	QuotaLimitTable <%= @QuotaLimitTable %>
+<% end -%>
+<% if defined? @QuotaLock -%>
+	QuotaLock <%= @QuotaLock %>
+<% end -%>
+<% if defined? @QuotaLog -%>
+	QuotaLog <%= @QuotaLog %>
+<% end -%>
+<% if defined? @QuotaOptions -%>
+	QuotaOptions <%= @QuotaOptions %>
+<% end -%>
+<% if defined? @QuotaShowQuotas -%>
+	QuotaShowQuotas <%= @QuotaShowQuotas %>
+<% end -%>
+<% if defined? @QuotaTallyTable -%>
+	QuotaTallyTable <%= @QuotaTallyTable %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_radius.c>
+<% if defined? @RadiusAcctServer -%>
+	RadiusAcctServer <%= @RadiusAcctServer %>
+<% end -%>
+<% if defined? @RadiusAuthServer -%>
+	RadiusAuthServer <%= @RadiusAuthServer %>
+<% end -%>
+<% if defined? @RadiusEngine -%>
+	RadiusEngine <%= @RadiusEngine %>
+<% end -%>
+<% if defined? @RadiusGroupInfo -%>
+	RadiusGroupInfo <%= @RadiusGroupInfo %>
+<% end -%>
+<% if defined? @RadiusLog -%>
+	RadiusLog <%= @RadiusLog %>
+<% end -%>
+<% if defined? @RadiusNASIdentifier -%>
+	RadiusNASIdentifier <%= @RadiusNASIdentifier %>
+<% end -%>
+<% if defined? @RadiusQuotaInfo -%>
+	RadiusQuotaInfo <%= @RadiusQuotaInfo %>
+<% end -%>
+<% if defined? @RadiusRealm -%>
+	RadiusRealm <%= @RadiusRealm %>
+<% end -%>
+<% if defined? @RadiusUserInfo -%>
+	RadiusUserInfo <%= @RadiusUserInfo %>
+<% end -%>
+<% if defined? @RadiusVendor -%>
+	RadiusVendor <%= @RadiusVendor %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_ratio.c>
+<% if defined? @UserRatio -%>
+	UserRatio <%= @UserRatio %>
+<% end -%>
+<% if defined? @GroupRatio -%>
+	GroupRatio <%= @GroupRatio %>
+<% end -%>
+<% if defined? @AnonRatio -%>
+	AnonRatio <%= @AnonRatio %>
+<% end -%>
+<% if defined? @HostRatio -%>
+	HostRatio <%= @HostRatio %>
+<% end -%>
+<% if defined? @Ratios -%>
+	Ratios <%= @Ratios %>
+<% end -%>
+<% if defined? @FileRatioErrMsg -%>
+	FileRatioErrMsg <%= @FileRatioErrMsg %>
+<% end -%>
+<% if defined? @ByteRatioErrMsg -%>
+	ByteRatioErrMsg <%= @ByteRatioErrMsg %>
+<% end -%>
+<% if defined? @LeechRatioMsg -%>
+	LeechRatioMsg <%= @LeechRatioMsg %>
+<% end -%>
+<% if defined? @CwdRatioMsg -%>
+	CwdRatioMsg <%= @CwdRatioMsg %>
+<% end -%>
+<% if defined? @SaveRatios -%>
+	SaveRatios <%= @SaveRatios %>
+<% end -%>
+<% if defined? @RatioFile -%>
+	RatioFile <%= @RatioFile %>
+<% end -%>
+<% if defined? @RatioTempFile -%>
+	RatioTempFile <%= @RatioTempFile %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_readme.c>
+<% if defined? @DisplayReadme -%>
+	DisplayReadme <%= @DisplayReadme %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+<% if defined? @RewriteCondition -%>
+	RewriteCondition <%= @RewriteCondition %>
+<% end -%>
+<% if defined? @RewriteEngine -%>
+	RewriteEngine <%= @RewriteEngine %>
+<% end -%>
+<% if defined? @RewriteLock -%>
+	RewriteLock <%= @RewriteLock %>
+<% end -%>
+<% if defined? @RewriteMaxReplace -%>
+	RewriteMaxReplace <%= @RewriteMaxReplace %>
+<% end -%>
+<% if defined? @RewriteLog -%>
+	RewriteLog <%= @RewriteLog %>
+<% end -%>
+<% if defined? @RewriteMap -%>
+	RewriteMap <%= @RewriteMap %>
+<% end -%>
+<% if defined? @RewriteRule -%>
+	RewriteRule <%= @RewriteRule %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_sftp.c>
+<% if defined? @SFTPAcceptEnv -%>
+	SFTPAcceptEnv <%= @SFTPAcceptEnv %>
+<% end -%>
+<% if defined? @SFTPAuthMethods -%>
+	SFTPAuthMethods <%= @SFTPAuthMethods %>
+<% end -%>
+<% if defined? @SFTPAuthorizedHostKeys -%>
+	SFTPAuthorizedHostKeys <%= @SFTPAuthorizedHostKeys %>
+<% end -%>
+<% if defined? @SFTPAuthorizedUserKeys -%>
+	SFTPAuthorizedUserKeys <%= @SFTPAuthorizedUserKeys %>
+<% end -%>
+<% if defined? @SFTPCiphers -%>
+	SFTPCiphers <%= @SFTPCiphers %>
+<% end -%>
+<% if defined? @SFTPClientAlive -%>
+	SFTPClientAlive <%= @SFTPClientAlive %>
+<% end -%>
+<% if defined? @SFTPClientMatch -%>
+	SFTPClientMatch <%= @SFTPClientMatch %>
+<% end -%>
+<% if defined? @SFTPCompression -%>
+	SFTPCompression <%= @SFTPCompression %>
+<% end -%>
+<% if defined? @SFTPCryptoDevice -%>
+	SFTPCryptoDevice <%= @SFTPCryptoDevice %>
+<% end -%>
+<% if defined? @SFTPDHParamFile -%>
+	SFTPDHParamFile <%= @SFTPDHParamFile %>
+<% end -%>
+<% if defined? @SFTPDigests -%>
+	SFTPDigests <%= @SFTPDigests %>
+<% end -%>
+<% if defined? @SFTPDisplayBanner -%>
+	SFTPDisplayBanner <%= @SFTPDisplayBanner %>
+<% end -%>
+<% if defined? @SFTPEngine -%>
+	SFTPEngine <%= @SFTPEngine %>
+<% end -%>
+<% if defined? @SFTPExtensions -%>
+	SFTPExtensions <%= @SFTPExtensions %>
+<% end -%>
+<% if defined? @SFTPHostKey -%>
+	SFTPHostKey <%= @SFTPHostKey %>
+<% end -%>
+<% if defined? @SFTPKeyBlacklist -%>
+	SFTPKeyBlacklist <%= @SFTPKeyBlacklist %>
+<% end -%>
+<% if defined? @SFTPKeyExchanges -%>
+	SFTPKeyExchanges <%= @SFTPKeyExchanges %>
+<% end -%>
+<% if defined? @SFTPLog -%>
+	SFTPLog <%= @SFTPLog %>
+<% end -%>
+<% if defined? @SFTPMaxChannels -%>
+	SFTPMaxChannels <%= @SFTPMaxChannels %>
+<% end -%>
+<% if defined? @SFTPOptions -%>
+	SFTPOptions <%= @SFTPOptions %>
+<% end -%>
+<% if defined? @SFTPPassPhraseProvider -%>
+	SFTPPassPhraseProvider <%= @SFTPPassPhraseProvider %>
+<% end -%>
+<% if defined? @SFTPRekey -%>
+	SFTPRekey <%= @SFTPRekey %>
+<% end -%>
+<% if defined? @SFTPTrafficPolicy -%>
+	SFTPTrafficPolicy <%= @SFTPTrafficPolicy %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_sftp_pam.c>
+<% if defined? @SFTPPAMEngine -%>
+	SFTPPAMEngine <%= @SFTPPAMEngine %>
+<% end -%>
+<% if defined? @SFTPPAMOptions -%>
+	SFTPPAMOptions <%= @SFTPPAMOptions %>
+<% end -%>
+<% if defined? @SFTPPAMServiceName -%>
+	SFTPPAMServiceName <%= @SFTPPAMServiceName %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_shaper.c>
+<% if defined? @ShaperAll -%>
+	ShaperAll <%= @ShaperAll %>
+<% end -%>
+<% if defined? @ShaperControlsACLs -%>
+	ShaperControlsACLs <%= @ShaperControlsACLs %>
+<% end -%>
+<% if defined? @ShaperEngine -%>
+	ShaperEngine <%= @ShaperEngine %>
+<% end -%>
+<% if defined? @ShaperLog -%>
+	ShaperLog <%= @ShaperLog %>
+<% end -%>
+<% if defined? @ShaperSession -%>
+	ShaperSession <%= @ShaperSession %>
+<% end -%>
+<% if defined? @ShaperTable -%>
+	ShaperTable <%= @ShaperTable %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_site_misc.c>
+<% if defined? @SiteMiscEngine -%>
+	SiteMiscEngine <%= @SiteMiscEngine %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_snmp.c>
+<% if defined? @SNMPAgent -%>
+	SNMPAgent <%= @SNMPAgent %>
+<% end -%>
+<% if defined? @SNMPCommunity -%>
+	SNMPCommunity <%= @SNMPCommunity %>
+<% end -%>
+<% if defined? @SNMPEnable -%>
+	SNMPEnable <%= @SNMPEnable %>
+<% end -%>
+<% if defined? @SNMPEngine -%>
+	SNMPEngine <%= @SNMPEngine %>
+<% end -%>
+<% if defined? @SNMPLog -%>
+	SNMPLog <%= @SNMPLog %>
+<% end -%>
+<% if defined? @SNMPMaxVariables -%>
+	SNMPMaxVariables <%= @SNMPMaxVariables %>
+<% end -%>
+<% if defined? @SNMPNotify -%>
+	SNMPNotify <%= @SNMPNotify %>
+<% end -%>
+<% if defined? @SNMPOptions -%>
+	SNMPOptions <%= @SNMPOptions %>
+<% end -%>
+<% if defined? @SNMPTables -%>
+	SNMPTables <%= @SNMPTables %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_sql.c>
+<% if defined? @SQLConnectInfo -%>
+	SQLConnectInfo <%= @SQLConnectInfo %>
+<% end -%>
+<% if defined? @SQLNamedConnectInfo -%>
+	SQLNamedConnectInfo <%= @SQLNamedConnectInfo %>
+<% end -%>
+<% if defined? @SQLAuthenticate -%>
+	SQLAuthenticate <%= @SQLAuthenticate %>
+<% end -%>
+<% if defined? @SQLAuthTypes -%>
+	SQLAuthTypes <%= @SQLAuthTypes %>
+<% end -%>
+<% if defined? @SQLBackend -%>
+	SQLBackend <%= @SQLBackend %>
+<% end -%>
+<% if defined? @SQLEngine -%>
+	SQLEngine <%= @SQLEngine %>
+<% end -%>
+<% if defined? @SQLOptions -%>
+	SQLOptions <%= @SQLOptions %>
+<% end -%>
+<% if defined? @SQLUserInfo -%>
+	SQLUserInfo <%= @SQLUserInfo %>
+<% end -%>
+<% if defined? @SQLUserPrimaryKey -%>
+	SQLUserPrimaryKey <%= @SQLUserPrimaryKey %>
+<% end -%>
+<% if defined? @SQLUserWhereClause -%>
+	SQLUserWhereClause <%= @SQLUserWhereClause %>
+<% end -%>
+<% if defined? @SQLGroupInfo -%>
+	SQLGroupInfo <%= @SQLGroupInfo %>
+<% end -%>
+<% if defined? @SQLGroupPrimaryKey -%>
+	SQLGroupPrimaryKey <%= @SQLGroupPrimaryKey %>
+<% end -%>
+<% if defined? @SQLGroupWhereClause -%>
+	SQLGroupWhereClause <%= @SQLGroupWhereClause %>
+<% end -%>
+<% if defined? @SQLMinID -%>
+	SQLMinID <%= @SQLMinID %>
+<% end -%>
+<% if defined? @SQLMinUserUID -%>
+	SQLMinUserUID <%= @SQLMinUserUID %>
+<% end -%>
+<% if defined? @SQLMinUserGID -%>
+	SQLMinUserGID <%= @SQLMinUserGID %>
+<% end -%>
+<% if defined? @SQLDefaultUID -%>
+	SQLDefaultUID <%= @SQLDefaultUID %>
+<% end -%>
+<% if defined? @SQLDefaultGID -%>
+	SQLDefaultGID <%= @SQLDefaultGID %>
+<% end -%>
+<% if defined? @SQLNegativeCache -%>
+	SQLNegativeCache <%= @SQLNegativeCache %>
+<% end -%>
+<% if defined? @SQLRatios -%>
+	SQLRatios <%= @SQLRatios %>
+<% end -%>
+<% if defined? @SQLRatioStats -%>
+	SQLRatioStats <%= @SQLRatioStats %>
+<% end -%>
+<% if defined? @SQLDefaultHomedir -%>
+	SQLDefaultHomedir <%= @SQLDefaultHomedir %>
+<% end -%>
+<% if defined? @SQLLog -%>
+	SQLLog <%= @SQLLog %>
+<% end -%>
+<% if defined? @SQLLogFile -%>
+	SQLLogFile <%= @SQLLogFile %>
+<% end -%>
+<% if defined? @SQLLogOnEvent -%>
+	SQLLogOnEvent <%= @SQLLogOnEvent %>
+<% end -%>
+<% if defined? @SQLNamedQuery -%>
+	SQLNamedQuery <%= @SQLNamedQuery %>
+<% end -%>
+<% if defined? @SQLShowInfo -%>
+	SQLShowInfo <%= @SQLShowInfo %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_sql_passwd.c>
+<% if defined? @SQLPasswordEncoding -%>
+	SQLPasswordEncoding <%= @SQLPasswordEncoding %>
+<% end -%>
+<% if defined? @SQLPasswordEngine -%>
+	SQLPasswordEngine <%= @SQLPasswordEngine %>
+<% end -%>
+<% if defined? @SQLPasswordOptions -%>
+	SQLPasswordOptions <%= @SQLPasswordOptions %>
+<% end -%>
+<% if defined? @SQLPasswordPBKDF2 -%>
+	SQLPasswordPBKDF2 <%= @SQLPasswordPBKDF2 %>
+<% end -%>
+<% if defined? @SQLPasswordRounds -%>
+	SQLPasswordRounds <%= @SQLPasswordRounds %>
+<% end -%>
+<% if defined? @SQLPasswordSaltFile -%>
+	SQLPasswordSaltFile <%= @SQLPasswordSaltFile %>
+<% end -%>
+<% if defined? @SQLPasswordUserSalt -%>
+	SQLPasswordUserSalt <%= @SQLPasswordUserSalt %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_tls.c>
+<% if defined? @TLSCACertificateFile -%>
+	TLSCACertificateFile <%= @TLSCACertificateFile %>
+<% end -%>
+<% if defined? @TLSCACertificatePath -%>
+	TLSCACertificatePath <%= @TLSCACertificatePath %>
+<% end -%>
+<% if defined? @TLSCARevocationFile -%>
+	TLSCARevocationFile <%= @TLSCARevocationFile %>
+<% end -%>
+<% if defined? @TLSCARevocationPath -%>
+	TLSCARevocationPath <%= @TLSCARevocationPath %>
+<% end -%>
+<% if defined? @TLSCertificateChainFile -%>
+	TLSCertificateChainFile <%= @TLSCertificateChainFile %>
+<% end -%>
+<% if defined? @TLSCipherSuite -%>
+	TLSCipherSuite <%= @TLSCipherSuite %>
+<% end -%>
+<% if defined? @TLSControlsACLs -%>
+	TLSControlsACLs <%= @TLSControlsACLs %>
+<% end -%>
+<% if defined? @TLSCryptoDevice -%>
+	TLSCryptoDevice <%= @TLSCryptoDevice %>
+<% end -%>
+<% if defined? @TLSDHParamFile -%>
+	TLSDHParamFile <%= @TLSDHParamFile %>
+<% end -%>
+<% if defined? @TLSDSACertificateFile -%>
+	TLSDSACertificateFile <%= @TLSDSACertificateFile %>
+<% end -%>
+<% if defined? @TLSDSACertificateKeyFile -%>
+	TLSDSACertificateKeyFile <%= @TLSDSACertificateKeyFile %>
+<% end -%>
+<% if defined? @TLSECCertificateFile -%>
+	TLSECCertificateFile <%= @TLSECCertificateFile %>
+<% end -%>
+<% if defined? @TLSECCertificateKeyFile -%>
+	TLSECCertificateKeyFile <%= @TLSECCertificateKeyFile %>
+<% end -%>
+<% if defined? @TLSEngine -%>
+	TLSEngine <%= @TLSEngine %>
+<% end -%>
+<% if defined? @TLSLog -%>
+	TLSLog <%= @TLSLog %>
+<% end -%>
+<% if defined? @TLSMasqueradeAddress -%>
+	TLSMasqueradeAddress <%= @TLSMasqueradeAddress %>
+<% end -%>
+<% if defined? @TLSOptions -%>
+	TLSOptions <%= @TLSOptions %>
+<% end -%>
+<% if defined? @TLSPassPhraseProvider -%>
+	TLSPassPhraseProvider <%= @TLSPassPhraseProvider %>
+<% end -%>
+<% if defined? @TLSPKCS12File -%>
+	TLSPKCS12File <%= @TLSPKCS12File %>
+<% end -%>
+<% if defined? @TLSProtocol -%>
+	TLSProtocol <%= @TLSProtocol %>
+<% end -%>
+<% if defined? @TLSRandomSeed -%>
+	TLSRandomSeed <%= @TLSRandomSeed %>
+<% end -%>
+<% if defined? @TLSRenegotiate -%>
+	TLSRenegotiate <%= @TLSRenegotiate.join(' ') %>
+<% end -%>
+<% if defined? @TLSRequired -%>
+	TLSRequired <%= @TLSRequired %>
+<% end -%>
+<% if defined? @self_signed -%>
+	TLSRSACertificateFile <%= @ca_dir + '/server.crt' %>
+	TLSRSACertificateKeyFile <%= @ca_dir + '/server.key' %>
+<% else -%>
+<%   if defined? @TLSRSACertificateFile -%>
+	TLSRSACertificateFile <%= @TLSRSACertificateFile %>
+<%   end -%>
+<%   if defined? @TLSRSACertificateKeyFile -%>
+	TLSRSACertificateKeyFile <%= @TLSRSACertificateKeyFile %>
+<%   end -%>
+<% end -%>
+<% if defined? @TLSServerCipherPreference -%>
+	TLSServerCipherPreference <%= @TLSServerCipherPreference %>
+<% end -%>
+<% if defined? @TLSSessionCache -%>
+	TLSSessionCache <%= @TLSSessionCache %>
+<% end -%>
+<% if defined? @TLSTimeoutHandshake -%>
+	TLSTimeoutHandshake <%= @TLSTimeoutHandshake %>
+<% end -%>
+<% if defined? @TLSUserName -%>
+	TLSUserName <%= @TLSUserName %>
+<% end -%>
+<% if defined? @TLSVerifyClient -%>
+	TLSVerifyClient <%= @TLSVerifyClient %>
+<% end -%>
+<% if defined? @TLSVerifyDepth -%>
+	TLSVerifyDepth <%= @TLSVerifyDepth %>
+<% end -%>
+<% if defined? @TLSVerifyOrder -%>
+	TLSVerifyOrder <%= @TLSVerifyOrder %>
+<% end -%>
+<% if defined? @TLSVerifyServer -%>
+	TLSVerifyServer <%= @TLSVerifyServer %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_unique_id.c>
+<% if defined? @UniqueIDEngine -%>
+	UniqueIDEngine <%= @UniqueIDEngine %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_wrap.c>
+<% if defined? @TCPAccessFiles -%>
+	TCPAccessFiles <%= @TCPAccessFiles %>
+<% end -%>
+<% if defined? @TCPAccessSyslogLevels -%>
+	TCPAccessSyslogLevels <%= @TCPAccessSyslogLevels %>
+<% end -%>
+<% if defined? @TCPGroupAccessFiles -%>
+	TCPGroupAccessFiles <%= @TCPGroupAccessFiles %>
+<% end -%>
+<% if defined? @TCPServiceName -%>
+	TCPServiceName <%= @TCPServiceName %>
+<% end -%>
+<% if defined? @TCPUserAccessFiles -%>
+	TCPUserAccessFiles <%= @TCPUserAccessFiles %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_wrap2.c>
+<% if defined? @WrapAllowMsg -%>
+	WrapAllowMsg <%= @WrapAllowMsg %>
+<% end -%>
+<% if defined? @WrapDenyMsg -%>
+	WrapDenyMsg <%= @WrapDenyMsg %>
+<% end -%>
+<% if defined? @WrapEngine -%>
+	WrapEngine <%= @WrapEngine %>
+<% end -%>
+<% if defined? @WrapGroupTables -%>
+	WrapGroupTables <%= @WrapGroupTables %>
+<% end -%>
+<% if defined? @WrapLog -%>
+	WrapLog <%= @WrapLog %>
+<% end -%>
+<% if defined? @WrapOptions -%>
+	WrapOptions <%= @WrapOptions %>
+<% end -%>
+<% if defined? @WrapServiceName -%>
+	WrapServiceName <%= @WrapServiceName %>
+<% end -%>
+<% if defined? @WrapTables -%>
+	WrapTables <%= @WrapTables %>
+<% end -%>
+<% if defined? @WrapUserTables -%>
+	WrapUserTables <%= @WrapUserTables %>
+<% end -%>
+</IfModule>
