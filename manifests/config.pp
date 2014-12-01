@@ -4,17 +4,17 @@
 #
 class proftpd::config {
 
-  file { "$config":
+  file { "$::proftpd::config":
     ensure       => file,
     owner        => 0,
     group        => 0,
     mode         => '0644',
-    content      => template($config_template),
-    validate_cmd => "$prefix/sbin/proftpd -t -c %",
+    content      => template($::proftpd::config_template),
+    validate_cmd => "$::proftpd::prefix/sbin/proftpd -t -c %",
   }
 
-  if $AuthGroupFile != undef {
-    file { "$AuthGroupFile":
+  if $::proftpd::AuthGroupFile != undef {
+    file { "$::proftpd::AuthGroupFile":
       ensure       => file,
       owner        => 0,
       group        => 0,
@@ -22,8 +22,8 @@ class proftpd::config {
     }
   }
 
-  if $AuthUserFile != undef {
-    file { "$AuthUserFile":
+  if $::proftpd::AuthUserFile != undef {
+    file { "$::proftpd::AuthUserFile":
       ensure       => file,
       owner        => 0,
       group        => 0,
@@ -31,8 +31,8 @@ class proftpd::config {
     }
   }
 
-  if $self_signed == true {
-    file { "$ca_dir":
+  if $::proftpd::self_signed == true {
+    file { "$::proftpd::ca_dir":
       ensure  => directory,
       owner   => 0,
       group   => 0,
@@ -46,32 +46,32 @@ class proftpd::config {
         '/usr/bin',
       ],
       cwd     => [
-        "$ca_dir",
+        "$::proftpd::ca_dir",
       ],
       creates => [
-        "$ca_dir/server.key",
+        "$::proftpd::ca_dir/server.key",
       ],
       require => [
-        File["$ca_dir"],
+        File["$::proftpd::ca_dir"],
       ],
     }
 
-    $subj_args = "/C=$ca_C/ST=$ca_ST/L=$ca_L/O=$ca_O/OU=$ca_OU/CN=$ca_CN/E=$ca_E/"
+    $::proftpd::subj_args = "/C=$::proftpd::ca_C/ST=$::proftpd::ca_ST/L=$::proftpd::ca_L/O=$::proftpd::ca_O/OU=$::proftpd::ca_OU/CN=$::proftpd::ca_CN/E=$::proftpd::ca_E/"
 
     exec { 'OpenSslReq: proftpd':
-      command => "openssl req -out server.csr -new -key server.key -subj $subj_args -batch",
+      command => "openssl req -out server.csr -new -key server.key -subj $::proftpd::subj_args -batch",
       path    => [
         '/usr/local/bin',
         '/usr/bin',
       ],
       cwd     => [
-        "$ca_dir",
+        "$::proftpd::ca_dir",
       ],
       creates => [
-        "$ca_dir/server.csr",
+        "$::proftpd::ca_dir/server.csr",
       ],
       require => [
-        File["$ca_dir"],
+        File["$::proftpd::ca_dir"],
         Exec['OpenSslGenrsa: proftpd'],
       ],
     }
@@ -83,13 +83,13 @@ class proftpd::config {
         '/usr/bin',
       ],
       cwd     => [
-        "$ca_dir",
+        "$::proftpd::ca_dir",
       ],
       creates => [
-        "$ca_dir/server.crt",
+        "$::proftpd::ca_dir/server.crt",
       ],
       require => [
-        File["$ca_dir"],
+        File["$::proftpd::ca_dir"],
         Exec['OpenSslGenrsa: proftpd'],
         Exec['OpenSslReq: proftpd'],
       ],
