@@ -56,10 +56,10 @@ class proftpd::config {
       ],
     }
 
-    $::proftpd::subj_args = "/C=$::proftpd::ca_C/ST=$::proftpd::ca_ST/L=$::proftpd::ca_L/O=$::proftpd::ca_O/OU=$::proftpd::ca_OU/CN=$::proftpd::ca_CN/E=$::proftpd::ca_E/"
+    $subj_args = "/C=$::proftpd::ca_C/ST=$::proftpd::ca_ST/L=$::proftpd::ca_L/O=$::proftpd::ca_O/OU=$::proftpd::ca_OU/CN=$::proftpd::ca_CN/E=$::proftpd::ca_E/"
 
     exec { 'OpenSslReq: proftpd':
-      command => "openssl req -out server.csr -new -key server.key -subj $::proftpd::subj_args -batch",
+      command => "openssl req -out server.csr -new -key server.key -subj $subj_args -batch",
       path    => [
         '/usr/local/bin',
         '/usr/bin',
