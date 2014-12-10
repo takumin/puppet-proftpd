@@ -46,7 +46,8 @@ class proftpd::params {
   $service_ensure  = 'running'
 
   # ProFTPD only Authentication
-  $managed_users = undef
+  $managed_users  = undef
+  $managed_groups = undef
 
   # Self-Signed Configuration
   $self_signed = false

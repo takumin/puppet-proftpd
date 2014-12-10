@@ -15,10 +15,11 @@ class proftpd (
   $service_name                        = $::proftpd::params::service_name,
   $service_ensure                      = $::proftpd::params::service_ensure,
   $prefix                              = $::proftpd::params::prefix,
-  $managed_users                       = $::proftpd::params::managed_users,
   $pw_dir                              = $::proftpd::params::pw_dir,
-  $self_signed                         = $::proftpd::params::self_signed,
+  $managed_users                       = $::proftpd::params::managed_users,
+  $managed_groups                      = $::proftpd::params::managed_groups,
   $ca_dir                              = $::proftpd::params::ca_dir,
+  $self_signed                         = $::proftpd::params::self_signed,
   $self_ca_C                           = $::proftpd::params::self_ca_C,
   $self_ca_ST                          = $::proftpd::params::self_ca_ST,
   $self_ca_L                           = $::proftpd::params::self_ca_L,
@@ -551,10 +552,21 @@ class proftpd (
 
   if $managed_users != undef {
     if $AuthGroupFile == undef {
-      $AuthGroupFile = "$prefix/pw/passwd"
+      $_AuthGroupFile = "$prefix/pw/passwd"
+    } else {
+      $_AuthGroupFile = $AuthGroupFile
     }
     if $AuthUserFile == undef {
-      $AuthUserFile = "$prefix/pw/group"
+      $_AuthUserFile = "$prefix/pw/group"
+    } else {
+      $_AuthUserFile = $AuthUserFile
+    }
+  } else {
+    if $AuthGroupFile != undef {
+      $_AuthGroupFile = $AuthGroupFile
+    }
+    if $AuthUserFile != undef {
+      $_AuthUserFile = $AuthUserFile
     }
   }
 

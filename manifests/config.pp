@@ -21,11 +21,53 @@ class proftpd::config {
       mode => '0700',
     }
 
+    define proftpd_users (
+      $uid,
+      $gid,
+      $home,
+      $shell,
+    ) {
+      exec { "ProFTPD User: $name":
+        command => [
+          'ftpasswd',
+          '--passwd',
+          "--file=$::proftpd::_AuthUserFile",
+          "--name=$name",
+          "--uid=$uid",
+          "--gid=$gid",
+          "--home=$home",
+          "--shell=$shell",
+        ],
+        path    => [
+          '/usr/local/bin',
+          '/usr/bin',
+        ],
+      }
+    }
     create_resources(proftpd_users, $::proftpd::managed_users)
 
+    define proftpd_groups (
+      $gid,
+    ) {
+      exec { "ProFTPD Group: $name":
+        command => [
+          'ftpasswd',
+          '--group',
+          "--file=$::proftpd::_AuthGroupFile",
+          "--name=$name",
+          "--gid=$gid",
+        ],
+        path    => [
+          '/usr/local/bin',
+          '/usr/bin',
+        ],
+      }
+    }
+    create_resources(proftpd_groups, $::proftpd::managed_groups)
+
     file {[
-      "$::proftpd::AuthGroupFile",
-      "$::proftpd::AuthUserFile",
+      "$::proftpd::_AuthGroupFile",
+      "$::proftpd::_AuthUserFile",
     ]:
       ensure       => file,
       owner        => 0,

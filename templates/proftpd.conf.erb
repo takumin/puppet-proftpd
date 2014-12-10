@@ -102,11 +102,11 @@
 </IfModule>
 
 <IfModule mod_auth_file.c>
-<% if defined? @AuthGroupFile -%>
-	AuthGroupFile <%= @AuthGroupFile %>
+<% if defined? @_AuthGroupFile -%>
+	AuthGroupFile <%= @_AuthGroupFile %>
 <% end -%>
-<% if defined? @AuthUserFile -%>
-	AuthUserFile <%= @AuthUserFile %>
+<% if defined? @_AuthUserFile -%>
+	AuthUserFile <%= @_AuthUserFile %>
 <% end -%>
 </IfModule>
 
