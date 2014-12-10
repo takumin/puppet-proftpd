@@ -552,12 +552,12 @@ class proftpd (
 
   if $managed_users != undef {
     if $AuthGroupFile == undef {
-      $_AuthGroupFile = "$prefix/pw/passwd"
+      $_AuthGroupFile = "$pw_dir/group"
     } else {
       $_AuthGroupFile = $AuthGroupFile
     }
     if $AuthUserFile == undef {
-      $_AuthUserFile = "$prefix/pw/group"
+      $_AuthUserFile = "$pw_dir/passwd"
     } else {
       $_AuthUserFile = $AuthUserFile
     }
