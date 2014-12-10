@@ -14,7 +14,11 @@ class proftpd (
   $package_ensure                      = $::proftpd::params::package_ensure,
   $service_name                        = $::proftpd::params::service_name,
   $service_ensure                      = $::proftpd::params::service_ensure,
+  $prefix                              = $::proftpd::params::prefix,
+  $managed_users                       = $::proftpd::params::managed_users,
+  $pw_dir                              = $::proftpd::params::pw_dir,
   $self_signed                         = $::proftpd::params::self_signed,
+  $ca_dir                              = $::proftpd::params::ca_dir,
   $self_ca_C                           = $::proftpd::params::self_ca_C,
   $self_ca_ST                          = $::proftpd::params::self_ca_ST,
   $self_ca_L                           = $::proftpd::params::self_ca_L,
@@ -544,6 +548,15 @@ class proftpd (
   validate_string($package_ensure)
   validate_string($service_name)
   validate_string($service_ensure)
+
+  if $managed_users != undef {
+    if $AuthGroupFile == undef {
+      $AuthGroupFile = "$prefix/pw/passwd"
+    }
+    if $AuthUserFile == undef {
+      $AuthUserFile = "$prefix/pw/group"
+    }
+  }
 
   class { '::proftpd::install': } ->
   class { '::proftpd::config': } ~>

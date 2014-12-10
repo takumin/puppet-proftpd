@@ -13,21 +13,24 @@ class proftpd::config {
     validate_cmd => "$::proftpd::prefix/sbin/proftpd -t -c %",
   }
 
-  if $::proftpd::AuthGroupFile != undef {
-    file { "$::proftpd::AuthGroupFile":
-      ensure       => file,
-      owner        => 0,
-      group        => 0,
-      mode         => '0440',
+  if $::proftpd::managed_users != undef {
+    file { "$::proftpd::pw_dir":
+      ensure => directory,
+      owner => 0,
+      group => 0,
+      mode => '0700',
     }
-  }
 
-  if $::proftpd::AuthUserFile != undef {
-    file { "$::proftpd::AuthUserFile":
+    create_resources(proftpd_users, $::proftpd::managed_users)
+
+    file {[
+      "$::proftpd::AuthGroupFile",
+      "$::proftpd::AuthUserFile",
+    ]:
       ensure       => file,
       owner        => 0,
       group        => 0,
-      mode         => '0440',
+      mode         => '0600',
     }
   }
 

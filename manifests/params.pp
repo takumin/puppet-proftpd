@@ -5,23 +5,11 @@
 #
 class proftpd::params {
   case $::osfamily {
-    'Debian': {
+    'Debian', 'RedHat', 'Amazon': {
       # Module Configuration
       $prefix       = undef
       $config       = '/etc/proftpd.conf'
-      $ca_dir       = '/etc/proftpd/ca'
-      $package_name = [ 'proftpd' ]
-      $service_name = 'proftpd'
-      # mod_core.c
-      $PidFile        = '/var/run/proftpd.pid'
-      $ScoreboardFile = '/var/run/proftpd.scoreboard'
-      # mod_delay.c
-      $DelayTable     = '/var/run/proftpd.delay'
-    }
-    'RedHat', 'Amazon': {
-      # Module Configuration
-      $prefix       = undef
-      $config       = '/etc/proftpd.conf'
+      $pw_dir       = '/etc/proftpd/pw'
       $ca_dir       = '/etc/proftpd/ca'
       $package_name = [ 'proftpd' ]
       $service_name = 'proftpd'
@@ -35,6 +23,7 @@ class proftpd::params {
       # Module Configuration
       $prefix       = '/usr/local'
       $config       = "$prefix/etc/proftpd.conf"
+      $pw_dir       = "$prefix/etc/proftpd/pw"
       $ca_dir       = "$prefix/etc/proftpd/ca"
       $package_name = [ 'ftp/proftpd' ]
       $service_name = 'proftpd'
@@ -55,6 +44,9 @@ class proftpd::params {
   $config_template = 'proftpd/proftpd.conf.erb'
   $package_ensure  = 'present'
   $service_ensure  = 'running'
+
+  # ProFTPD only Authentication
+  $managed_users = undef
 
   # Self-Signed Configuration
   $self_signed = false
