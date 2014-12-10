@@ -567,7 +567,7 @@
 <% end -%>
 <% if defined? @LogFormat -%>
 <% @LogFormat.each do |key, value| -%>
-	LogFormat <%= key %> <%= value %>
+	LogFormat <%= key %> "<%= value %>"
 <% end -%>
 <% end -%>
 <% if defined? @ServerLog -%>
