@@ -9,6 +9,7 @@ class proftpd::params {
       # Module Configuration
       $prefix       = undef
       $config       = '/etc/proftpd.conf'
+      $base_dir     = '/etc/proftpd'
       $pw_dir       = '/etc/proftpd/pw'
       $ca_dir       = '/etc/proftpd/ca'
       $package_name = [ 'proftpd' ]

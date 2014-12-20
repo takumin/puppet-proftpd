@@ -13,12 +13,20 @@ class proftpd::config {
     validate_cmd => "$::proftpd::prefix/sbin/proftpd -t -c %",
   }
 
+  file { "$::proftpd::base_dir":
+    ensure => directory,
+    owner  => 0,
+    group  => 0,
+    mode   => '0755',
+  }
+
   if $::proftpd::managed_users != undef {
     file { "$::proftpd::pw_dir":
-      ensure => directory,
-      owner => 0,
-      group => 0,
-      mode => '0700',
+      ensure  => directory,
+      owner   => 0,
+      group   => 0,
+      mode    => '0700',
+      require => File["$::proftpd::base_dir"]
     }
 
     create_resources(proftpd::users, $::proftpd::managed_users)
@@ -41,6 +49,7 @@ class proftpd::config {
       owner   => 0,
       group   => 0,
       mode    => '0700',
+      require => File["$::proftpd::base_dir"]
     }
 
     exec { 'OpenSslGenrsa: proftpd':

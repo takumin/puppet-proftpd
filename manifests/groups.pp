@@ -11,6 +11,7 @@ define proftpd::groups (
       File["$::proftpd::pw_dir"],
     ],
     before => [
+      File["$::proftpd::config"],
       Service["$::proftpd::service_name"],
     ],
     unless => "grep $name $::proftpd::_AuthGroupFile 2>/dev/null",
