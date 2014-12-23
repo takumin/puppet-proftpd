@@ -24,6 +24,7 @@ class proftpd::params {
       # Module Configuration
       $prefix       = '/usr/local'
       $config       = "$prefix/etc/proftpd.conf"
+      $base_dir     = "$prefix/etc/proftpd"
       $pw_dir       = "$prefix/etc/proftpd/pw"
       $ca_dir       = "$prefix/etc/proftpd/ca"
       $package_name = [ 'ftp/proftpd' ]

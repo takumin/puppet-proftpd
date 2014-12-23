@@ -15,6 +15,7 @@ class proftpd (
   $service_name                        = $::proftpd::params::service_name,
   $service_ensure                      = $::proftpd::params::service_ensure,
   $prefix                              = $::proftpd::params::prefix,
+  $base_dir                            = $::proftpd::params::base_dir,
   $pw_dir                              = $::proftpd::params::pw_dir,
   $managed_users                       = $::proftpd::params::managed_users,
   $managed_groups                      = $::proftpd::params::managed_groups,
